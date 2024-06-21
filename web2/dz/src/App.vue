@@ -1,6 +1,8 @@
 <template>
+  <div>
   <input type="number" v-model="number"/>
   <table-component :inputNumber="number"/>
+</div>
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 <template >
     <div>
         <button @click="incrementValues"> Увеличить значение </button>
-        <button @click="incrementValues"> поделить на 7 </button>
         <table>
             <tr>
                 <th v-for="num in numbers" :key="num"> 
@@ -10,7 +9,7 @@
             </tr>
             <tr>
                 <td v-for="num in numbers" :key="num"> 
-                    {{ num * inputNumber }}
+                    {{  Math.pow(inputNumber, num)  }}
                 </td>
             </tr>
         </table>
@@ -36,13 +35,7 @@ export default {
            for (let i = 0; i < 10; i++) {
                 this.$set(this.numbers, i, this.numbers[i] + 1);
             }
-        },
-        divideBySeven(){
-           for (let i = 0; i < 10; i++) {
-                this.$set(this.numbers, i, this.numbers[i] / 7);
-            }
         }
-
     }
 }
 </script>
