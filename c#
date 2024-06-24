@@ -10,9 +10,9 @@ namespace Animals
         }
     }
 
-    public class travoyadnie : Animal
+    public class Travoyadnie : Animal
     {
-        public travoyadnie(string name) : base(name) { }
+        public Travoyadnie(string name) : base(name) { }
 
     }
 
@@ -24,41 +24,41 @@ namespace Animals
     }
 
 
-    public abstract class xichniki : Animal
+    public abstract class Xichniki : Animal
     {
-        public xichniki(string name) : base(name) { }
+        public Xichniki(string name) : base(name) { }
 
     }
 
 
-    public class Belka : Herbivore
+    public class Belka : Travoyadnie
     {
         public Belka(string name) : base(name) { }
 
       
     }
 
-    public class Cat : Carnivore
+    public class Cat : Vseyidnie
     {
         public Cat(string name) : base(name) { }
 
     }
 
 
-    public class Tiger : Carnivore
+    public class Tiger : Xichniki
     {
         public Tiger(string name) : base(name) { }
 
     
     }
 
-    public class Dog : Omnivore
+    public class Dog : Vseyidnie
     {
         public Dog(string name) : base(name) { }
 
     }
 
-    public class Vorobei : Omnivore
+    public class Vorobei : Travoyadnie
     {
         public vorobei(string name) : base(name) { }
 
