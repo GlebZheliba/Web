@@ -1,5 +1,14 @@
+using System;
+using System.Collections.Generic;
+
 namespace Animals
 {
+
+    public interface Itravpiyadnie
+    {
+        void EatGrass();
+    }
+
     public abstract class Animal
     {
         public string Name { get; set; }
@@ -10,10 +19,14 @@ namespace Animals
         }
     }
 
-    public class Travoyadnie : Animal
+    public class Travoyadnie : Animal, Itravpiyadnie
     {
         public Travoyadnie(string name) : base(name) { }
 
+         public void Eattrava()
+        {
+            Console.WriteLine($"{Name} ест траву");
+        }
     }
 
     
@@ -21,13 +34,36 @@ namespace Animals
     {
         public Vseyidnie(string name) : base(name) { }
 
+         public void EatMeat(Animal eda)
+        {
+            Console.WriteLine($"{Name} ест мясо {eda.Name}");
+        }
+
+        public void Eattrava()
+        {
+            Console.WriteLine($"{Name} ест растения");
+        }
     }
 
 
     public abstract class Xichniki : Animal
     {
         public Xichniki(string name) : base(name) { }
+        
+         public void Hunt(Animal eda)
+        {
+            Console.WriteLine($"{Name} охотится на {eda.Name}");
 
+            
+            if (!(eda is Xichniki))
+            {
+                Console.WriteLine($"{Name} съел {eda.Name}");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} не может съесть {eda.Name}.");
+            }
+        }
     }
 
 
@@ -35,13 +71,20 @@ namespace Animals
     {
         public Belka(string name) : base(name) { }
 
-      
+         public override void Move()
+        {
+            Console.WriteLine($"{Name} прыгает по деревьям");
+        }
     }
 
     public class Cat : Vseyidnie
     {
         public Cat(string name) : base(name) { }
 
+          public void Meow()
+        {
+            Console.WriteLine($"{Name} мяукает");
+        }
     }
 
 
@@ -49,20 +92,30 @@ namespace Animals
     {
         public Tiger(string name) : base(name) { }
 
-    
+         public void richit()
+        {
+            Console.WriteLine($"{Name} рычит");
+        }
     }
 
     public class Dog : Vseyidnie
     {
         public Dog(string name) : base(name) { }
 
+          public void laet()
+        {
+            Console.WriteLine($"{Name} лает");
+        }
     }
 
     public class Vorobei : Travoyadnie
     {
         public vorobei(string name) : base(name) { }
 
-
+         public void Chirikaet()
+        {
+            Console.WriteLine($"{Name} чирикает");
+        }
     }
 
     class Program
