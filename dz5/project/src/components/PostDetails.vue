@@ -1,33 +1,37 @@
 <template>
     <div>
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.content }}</p>
+      <div v-if="post">
+        <h2>{{ post.Title }}</h2>
+        <p>{{ post.Body }}</p>
+      </div>
+      <router-link to="/" class="return-link">Назад</router-link>
     </div>
   </template>
   
   <script>
-  import axios from 'axios';
+  import axios from "axios";
   
   export default {
+    name: "PostDetails",
     data() {
       return {
-        post: null
+        post: null,
+      };
+    },
+    async created() {
+      try {
+        const response = await axios.get(`http://localhost:5180/api/Posts/${this.$route.params.id}`);
+        this.post = response.data;
+      } catch (error) {
+        alert(error);
       }
     },
-    mounted() {
-      this.fetchPost();
-    },
-    methods: {
-      fetchPost() {
-        const postId = this.$route.params.id;
-        axios.get(`http://localhost:5180/api/Posts/${postId}`) 
-          .then(response => {
-            this.post = response.data;
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }
-    }
   };
   </script>
+  
+  <style scoped>
+  .return-link {
+    margin-top: 20px;
+    margin-left: 50%;
+  }
+  </style>

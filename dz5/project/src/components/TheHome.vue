@@ -17,18 +17,14 @@ export default {
       posts: []
     }
   },
-  mounted() {
-    this.fetchPosts();
+  async mounted() {
+    await this.fetchPosts();
   },
   methods: {
-    fetchPosts() {
-      axios.get('http://localhost:5180/api/Posts')
-        .then(response => {
+    async fetchPosts() {
+      const response = await axios.get('http://localhost:5180/api/Posts')
+          console.log(response.data)
           this.posts = response.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
     }
   },
   components: {
