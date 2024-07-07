@@ -15,7 +15,11 @@
     name: "PostDetails",
     data() {
       return {
-        post: null,
+        post: {
+          default: {},
+          type: Object,
+          required: true
+        }
       };
     },
     async created() {
