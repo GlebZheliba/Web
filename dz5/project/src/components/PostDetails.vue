@@ -1,40 +1,32 @@
 <template>
     <div>
-      <PostCard :post="post" :id="$route.params.id"/>
+      <div v-if="post">
+        <h2>{{ post.Title }}</h2>
+        <p>{{ post.Body }}</p>
+      </div>
       <router-link to="/" class="return-link">Назад</router-link>
     </div>
   </template>
   
   <script>
-  import PostCard from "@/components/PostCard.vue"
   import axios from "axios";
   
   export default {
-      name: "PostDetails",
-      components: {
-        PostCard
-      },
-      data() {
-        return {
-          post: {
-            default: {},
-            type: Object,
-            required: true
-          }
-        }
-      },
-      props: {
-          id: String
-      },
-      async created() {
-        try {
-          this.post = (await axios.get(`http://localhost:5180/api/Posts/${this.id}`)).data;
-          console.log(this.post)
-        } catch (error) {
-          alert(error);
-        }
+    name: "PostDetails",
+    data() {
+      return {
+        post: null,
+      };
+    },
+    async created() {
+      try {
+        const response = await axios.get(`http://localhost:5180/api/Posts/${this.$route.params.id}`);
+        this.post = response.data;
+      } catch (error) {
+        alert(error);
       }
-  }
+    },
+  };
   </script>
   
   <style scoped>
